@@ -15,14 +15,14 @@ public class Homework02Application {
             context.register(CelsiusConverterImpl.class, FahrenheitConverterImpl.class, KelvinConverterImpl.class);
             context.refresh();
 
-            TemperatureConverter celsiusConverter = (TemperatureConverter) context.getBean("CELSIUS");
-            TemperatureConverter fahrenheitConverter = (TemperatureConverter) context.getBean("FAHRENHEIT");
-            TemperatureConverter kelvinConverter = (TemperatureConverter) context.getBean("KELVIN");
+            TemperatureConverter celsiusConverter = context.getBean("CELSIUS", TemperatureConverter.class);
+            TemperatureConverter fahrenheitConverter = context.getBean("FAHRENHEIT", TemperatureConverter.class);
+            TemperatureConverter kelvinConverter = context.getBean("KELVIN", TemperatureConverter.class);
 
             Temperature kelvinTemperature = new Temperature(TemperatureType.KELVIN, 100);
-            System.out.println("Kelvin 100 to celsius =" + celsiusConverter.convert(kelvinTemperature).getValue());
-            System.out.println("Kelvin 100 to Fahrenheit =" + fahrenheitConverter.convert(kelvinTemperature).getValue());
-            System.out.println("Kelvin 100 to Kelvin =" + kelvinConverter.convert(kelvinTemperature).getValue());
+            System.out.printf("Kelvin 100 to celsius = %.2f%n", celsiusConverter.convert(kelvinTemperature).value());
+            System.out.printf("Kelvin 100 to Fahrenheit = %.2f%n", fahrenheitConverter.convert(kelvinTemperature).value());
+            System.out.printf("Kelvin 100 to Kelvin = %.2f%n" , kelvinConverter.convert(kelvinTemperature).value());
         }
     }
 }

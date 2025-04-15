@@ -11,10 +11,10 @@ import static colvir.bootcamp.homework02.model.enums.TemperatureType.*;
 public class FahrenheitConverterImpl implements TemperatureConverter {
     @Override
     public Temperature convert(Temperature needToConvert) {
-        return switch (needToConvert.getTemperatureType()) {
+        return switch (needToConvert.temperatureType()) {
             case FAHRENHEIT-> needToConvert;
-            case CELSIUS -> new Temperature(FAHRENHEIT, needToConvert.getValue()*1.8+32);
-            case KELVIN -> new Temperature(FAHRENHEIT, needToConvert.getValue()*1.8 - 459.67);
+            case CELSIUS -> new Temperature(FAHRENHEIT, needToConvert.value()*1.8+32);
+            case KELVIN -> new Temperature(FAHRENHEIT, needToConvert.value()*1.8 - 459.67);
         };
     }
 }

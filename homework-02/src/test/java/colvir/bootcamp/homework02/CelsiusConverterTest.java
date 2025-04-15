@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CelsiusConverterTest {
 
-    private static double BODY_TEMPERATURE_IN_FAHRENHEIT = 98.2;
-    private static double BODY_TEMPERATURE_IN_KELVIN = 310;
-    private static double BODY_TEMPERATURE_IN_CELSIUM = 36.8;
+    private static final double BODY_TEMPERATURE_IN_FAHRENHEIT = 98.2;
+    private static final double BODY_TEMPERATURE_IN_KELVIN = 310;
+    private static final double BODY_TEMPERATURE_IN_CELSIUS = 36.8;
 
     @Test
     public void convertFromFahrenheit() {
@@ -21,8 +21,8 @@ public class CelsiusConverterTest {
             context.register(CelsiusConverterImpl.class);
             context.refresh();
             Temperature bodyTemperature = new Temperature(TemperatureType.FAHRENHEIT, BODY_TEMPERATURE_IN_FAHRENHEIT);
-            TemperatureConverter celsiusConverter = (TemperatureConverter) context.getBean("CELSIUS");
-            assertEquals(BODY_TEMPERATURE_IN_CELSIUM, celsiusConverter.convert(bodyTemperature).getValue(), 0.1);
+            TemperatureConverter celsiusConverter = context.getBean("CELSIUS", TemperatureConverter.class);
+            assertEquals(BODY_TEMPERATURE_IN_CELSIUS, celsiusConverter.convert(bodyTemperature).value(), 0.1);
         }
     }
     @Test
@@ -31,8 +31,8 @@ public class CelsiusConverterTest {
             context.register(CelsiusConverterImpl.class);
             context.refresh();
             Temperature bodyTemperature = new Temperature(TemperatureType.KELVIN, BODY_TEMPERATURE_IN_KELVIN);
-            TemperatureConverter celsiusConverter = (TemperatureConverter) context.getBean("CELSIUS");
-            assertEquals(BODY_TEMPERATURE_IN_CELSIUM, celsiusConverter.convert(bodyTemperature).getValue(), 0.1);
+            TemperatureConverter celsiusConverter = context.getBean("CELSIUS", TemperatureConverter.class);
+            assertEquals(BODY_TEMPERATURE_IN_CELSIUS, celsiusConverter.convert(bodyTemperature).value(), 0.1);
         }
     }
 
