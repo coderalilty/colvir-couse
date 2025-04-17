@@ -16,6 +16,7 @@ public class Homework03Application {
             System.out.println(parentBean.getChildBean().getScopeTestNumber());
             System.out.println(parentBean2.getChildBean().getScopeTestNumber());
             System.out.println(parentBean.getChildBean().getScopeTestNumber() == parentBean2.getChildBean().getScopeTestNumber());
+            System.out.println(parentBean.getChildBeanByLookup().getScopeTestNumber() == parentBean2.getChildBeanByLookup().getScopeTestNumber());
 
             ChildBean childBean = context.getBean("child", ChildBean.class);
             ChildBean childBean2 = context.getBean("child", ChildBean.class);
